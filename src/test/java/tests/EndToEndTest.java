@@ -2,7 +2,7 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 public class EndToEndTest extends BaseTest {
 
@@ -15,6 +15,7 @@ public class EndToEndTest extends BaseTest {
         cartPage.checkout();
         checkoutPage.fillFields("Grisha", "Ivanov", "1234");
         checkoutPage.finish();
-        assertTrue(checkoutPage.isOrderComplete());
+        assertEquals(checkoutPage.getOrderMessage(), "Thank you for your order!",
+                "Неправильный текст сообщения");
     }
 }

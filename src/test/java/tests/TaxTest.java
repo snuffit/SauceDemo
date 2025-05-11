@@ -12,9 +12,12 @@ public class TaxTest extends BaseTest {
         mainPage.goToCart();
         cartPage.checkout();
         checkoutPage.fillFields("Grisha", "Ivanov", "1234");
-        softAssert.assertTrue(checkoutPage.isItemTotalEqualSum());
-        softAssert.assertTrue(checkoutPage.isTaxCorrect());
-        softAssert.assertTrue(checkoutPage.isTotalCorrect());
+        softAssert.assertEquals(checkoutPage.getItemTotal(), checkoutPage.getSumOfProductPrices(),
+                "Суммы не совпадают");
+        softAssert.assertEquals(checkoutPage.getTax(), checkoutPage.getCorrectTax(),
+                "Налог посчитан неверно");
+        softAssert.assertEquals((checkoutPage.getTax() + checkoutPage.getItemTotal()), checkoutPage.getTotal(),
+                "Итоговая сумма неправильная");
         softAssert.assertAll();
     }
 
@@ -27,9 +30,12 @@ public class TaxTest extends BaseTest {
         mainPage.goToCart();
         cartPage.checkout();
         checkoutPage.fillFields("Grisha", "Ivanov", "1234");
-        softAssert.assertTrue(checkoutPage.isItemTotalEqualSum());
-        softAssert.assertTrue(checkoutPage.isTaxCorrect());
-        softAssert.assertTrue(checkoutPage.isTotalCorrect());
+        softAssert.assertEquals(checkoutPage.getItemTotal(), checkoutPage.getSumOfProductPrices(),
+                "Суммы не совпадают");
+        softAssert.assertEquals(checkoutPage.getTax(), checkoutPage.getCorrectTax(),
+                "Налог посчитан неверно");
+        softAssert.assertEquals((checkoutPage.getTax() + checkoutPage.getItemTotal()), checkoutPage.getTotal(),
+                "Итоговая сумма неправильная");
         softAssert.assertAll();
     }
 }

@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProductsPage extends BasePage {
+
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
@@ -22,7 +23,6 @@ public class ProductsPage extends BasePage {
             PRODUCT_PRICE = PRODUCT_NAME + "//ancestor::div[@data-test='inventory-item-description']" +
                     "//div[@data-test='inventory-item-price']",
             ADD_TO_CART_BUTTON = PRODUCT_NAME + "//ancestor::div[@data-test='inventory-item-description']//button";
-
 
     public String getTitle() {
         return driver.findElement(TITLE).getText();
@@ -40,11 +40,7 @@ public class ProductsPage extends BasePage {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON, productName))).click();
     }
 
-    private Select productSort() {
-        return new Select(driver.findElement(PRODUCT_SORT));
-    }
-
-    private List getAllProductNames() {
+    public List getAllProductNames() {
         List<String> names = new ArrayList<>();
         for (WebElement el : driver.findElements(UNIVERSAL_PRODUCT_NAME)) {
             names.add(el.getText());
@@ -52,7 +48,7 @@ public class ProductsPage extends BasePage {
         return names;
     }
 
-    private List getAllProductPrices() {
+    public List getAllProductPrices() {
         List<Double> prices = new ArrayList<>();
         for (WebElement el : driver.findElements(UNIVERSAL_PRODUCT_PRICE)) {
             prices.add(Double.parseDouble(el.getText().replaceAll("\\$", "")));
@@ -60,59 +56,33 @@ public class ProductsPage extends BasePage {
         return prices;
     }
 
-    public void sortNameAZ() {
-        productSort().selectByValue("az");
+    public void sort(String typeOfSort) {
+        Select select = new Select(driver.findElement(PRODUCT_SORT));
+        select.selectByVisibleText(typeOfSort);
     }
 
     public boolean isSortNameAZ() {
         List<String> sortedNames = getAllProductNames();
         Collections.sort(sortedNames);
-        if (sortedNames.equals(getAllProductNames())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        return sortedNames.equals(getAllProductNames());
 
-    public void sortNameZA() {
-        productSort().selectByValue("za");
     }
 
     public boolean isSortNameZA() {
         List<String> sortedNames = getAllProductNames();
         Collections.sort(sortedNames, Collections.reverseOrder());
-        if (sortedNames.equals(getAllProductNames())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void sortPriceLowToHigh() {
-        productSort().selectByValue("lohi");
+        return sortedNames.equals(getAllProductNames());
     }
 
     public boolean isSortPriceLowToHigh() {
         List<Double> sortedPrices = getAllProductPrices();
         Collections.sort(sortedPrices);
-        if (sortedPrices.equals(getAllProductPrices())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void sortPriceHighToLow() {
-        productSort().selectByValue("hilo");
+        return sortedPrices.equals(getAllProductPrices());
     }
 
     public boolean isSortPriceHighToLow() {
         List<Double> sortedPrices = getAllProductPrices();
         Collections.sort(sortedPrices, Collections.reverseOrder());
-        if (sortedPrices.equals(getAllProductPrices())) {
-            return true;
-        } else {
-            return false;
-        }
+        return sortedPrices.equals(getAllProductPrices());
     }
 }

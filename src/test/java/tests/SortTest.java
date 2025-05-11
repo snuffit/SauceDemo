@@ -10,7 +10,7 @@ public class SortTest extends BaseTest {
     public void checkSortNameAZ() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.sortNameAZ();
+        productsPage.sort("Name (A to Z)");
         assertTrue(productsPage.isSortNameAZ(), "Сортировка не работает");
     }
 
@@ -18,7 +18,7 @@ public class SortTest extends BaseTest {
     public void checkSortNameZA() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.sortNameZA();
+        productsPage.sort("Name (Z to A)");
         assertTrue(productsPage.isSortNameZA(), "Сортировка не работает");
     }
 
@@ -26,7 +26,7 @@ public class SortTest extends BaseTest {
     public void checkSortPriceLowtoHigh() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.sortPriceLowToHigh();
+        productsPage.sort("Price (low to high)");
         assertTrue(productsPage.isSortPriceLowToHigh(), "Сортировка не работает");
     }
 
@@ -34,9 +34,7 @@ public class SortTest extends BaseTest {
     public void checkSortPriceHighToLow() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.sortPriceHighToLow();
+        productsPage.sort("Price (high to low)");
         assertTrue(productsPage.isSortPriceHighToLow(), "Сортировка не работает");
     }
-
-
 }

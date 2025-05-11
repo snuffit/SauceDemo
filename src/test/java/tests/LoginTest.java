@@ -32,7 +32,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void checkLoginWithIncorretLogin() {
+    public void checkLoginWithIncorreсtLogin() {
         loginPage.open();
         loginPage.login("incorrect", "secret_sauce");
         assertEquals(loginPage.getErrorMessage(),
@@ -41,7 +41,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void checkLoginWithIncorretPassword() {
+    public void checkLoginWithIncorreсtPassword() {
         loginPage.open();
         loginPage.login("standard_user", "incorrect");
         assertEquals(loginPage.getErrorMessage(),
