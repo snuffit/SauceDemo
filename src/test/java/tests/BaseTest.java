@@ -5,9 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
-import pages.LoginPage;
-import pages.MainPage;
-import pages.ProductsPage;
+import pages.*;
 
 import java.time.Duration;
 
@@ -18,6 +16,8 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     MainPage mainPage;
+    CartPage cartPage;
+    CheckoutPage checkoutPage;
 
     @BeforeMethod
     public void setup() {
@@ -28,7 +28,8 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         mainPage = new MainPage(driver);
-
+        cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
 
     }
 
