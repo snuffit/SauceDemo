@@ -1,40 +1,27 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
 public class SortTest extends BaseTest {
 
-    @Test
-    public void checkSortNameAZ() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.sort("Name (A to Z)");
-        assertTrue(productsPage.isSortNameAZ(), "Сортировка не работает");
+    @DataProvider(name = "Проверка сортировки")
+    public Object[][] sortData() {
+        return new Object[][]{
+                {"standard_user", "secret_sauce", "Name (A to Z)"},
+                {"standard_user", "secret_sauce", "Name (Z to A)"},
+                {"standard_user", "secret_sauce", "Price (low to high)"},
+                {"standard_user", "secret_sauce", "Price (high to low)"},
+        };
     }
 
-    @Test
-    public void checkSortNameZA() {
+    @Test(testName = "Проверка сортировки", dataProvider = "Проверка сортировки", groups = {"regression"})
+    public void checkSort(String user, String password, String typeOfSort) {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.sort("Name (Z to A)");
-        assertTrue(productsPage.isSortNameZA(), "Сортировка не работает");
-    }
-
-    @Test
-    public void checkSortPriceLowtoHigh() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.sort("Price (low to high)");
-        assertTrue(productsPage.isSortPriceLowToHigh(), "Сортировка не работает");
-    }
-
-    @Test
-    public void checkSortPriceHighToLow() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.sort("Price (high to low)");
-        assertTrue(productsPage.isSortPriceHighToLow(), "Сортировка не работает");
+        loginPage.login(user, password);
+        productsPage.sort(typeOfSort);
+        assertTrue(productsPage.isSort(typeOfSort), "Сортировка не работает");
     }
 }

@@ -5,7 +5,8 @@ import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Проверка добавления товара в корзину",
+            priority = 1, invocationCount = 3, groups = {"smoke"})
     public void checkAddToCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -19,7 +20,8 @@ public class CartTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(enabled = false, testName = "Проверка добавления 2 товаров в корзину",
+            priority = 2, groups = {"regression"})
     public void checkAddTwoProductsToCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -39,7 +41,7 @@ public class CartTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Проверка добавления 2 товаров в корзину", priority = 2, groups = {"regression"})
     public void checkAddSixProductsToCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class TaxTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Проверка подсчета налога на товар", priority = 1, groups = {"smoke"})
     public void checkTax() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -21,7 +21,7 @@ public class TaxTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Проверка подсчета налога на два товара", priority = 2, groups = {"regression"})
     public void checkTaxOfTwoProducts() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

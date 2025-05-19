@@ -6,7 +6,7 @@ import static org.testng.Assert.assertEquals;
 
 public class EndToEndTest extends BaseTest {
 
-    @Test
+    @Test(testName = "End-to-end тест", groups = {"regression"})
     public void checkEndToEnd() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

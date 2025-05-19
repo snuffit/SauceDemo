@@ -61,28 +61,24 @@ public class ProductsPage extends BasePage {
         select.selectByVisibleText(typeOfSort);
     }
 
-    public boolean isSortNameAZ() {
+    public boolean isSort(String typeOfSort) {
         List<String> sortedNames = getAllProductNames();
-        Collections.sort(sortedNames);
-        return sortedNames.equals(getAllProductNames());
-
-    }
-
-    public boolean isSortNameZA() {
-        List<String> sortedNames = getAllProductNames();
-        Collections.sort(sortedNames, Collections.reverseOrder());
-        return sortedNames.equals(getAllProductNames());
-    }
-
-    public boolean isSortPriceLowToHigh() {
         List<Double> sortedPrices = getAllProductPrices();
-        Collections.sort(sortedPrices);
-        return sortedPrices.equals(getAllProductPrices());
-    }
-
-    public boolean isSortPriceHighToLow() {
-        List<Double> sortedPrices = getAllProductPrices();
-        Collections.sort(sortedPrices, Collections.reverseOrder());
-        return sortedPrices.equals(getAllProductPrices());
+        switch (typeOfSort) {
+            case "Name (A to Z)":
+                Collections.sort(sortedNames);
+                return sortedNames.equals(getAllProductNames());
+            case "Name (Z to A)":
+                Collections.sort(sortedNames, Collections.reverseOrder());
+                return sortedNames.equals(getAllProductNames());
+            case "Price (low to high)":
+                Collections.sort(sortedPrices);
+                return sortedPrices.equals(getAllProductPrices());
+            case "Price (high to low)":
+                Collections.sort(sortedPrices, Collections.reverseOrder());
+                return sortedPrices.equals(getAllProductPrices());
+            default:
+                return false;
+        }
     }
 }
