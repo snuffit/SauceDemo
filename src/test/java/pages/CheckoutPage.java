@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,6 +50,7 @@ public class CheckoutPage extends BasePage {
                 .replaceAll("Total: \\$", ""));
     }
 
+    @Step("Заполнить поля значениями {firstName}, {lastName}, {postalCode} и перейти на следующий этап заказа")
     public void fillFields(String firstName, String lastName, String postalCode) {
         driver.findElement(FIRST_NAME_FIELD).sendKeys(firstName);
         driver.findElement(LAST_NAME_FIELD).sendKeys(lastName);
@@ -56,6 +58,7 @@ public class CheckoutPage extends BasePage {
         driver.findElement(CONTINUE_BUTTON).click();
     }
 
+    @Step("Завершение оформления заказа")
     public void finish() {
         driver.findElement(FINISH_BUTTON).click();
     }

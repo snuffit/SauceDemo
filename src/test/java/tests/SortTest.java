@@ -1,5 +1,8 @@
 package tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -18,6 +21,9 @@ public class SortTest extends BaseTest {
     }
 
     @Test(testName = "Проверка сортировки", dataProvider = "Проверка сортировки", groups = {"regression"})
+    @Epic("Сортировка")
+    @Feature("Страница логина")
+    @Story("Позитивный логин")
     public void checkSort(String user, String password, String typeOfSort) {
         loginPage.open();
         loginPage.login(user, password);

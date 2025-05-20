@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -9,6 +10,9 @@ public class LoginTest extends BaseTest {
 
     @Test(testName = "Проверка логина с корректными значениями",
             priority = 1, alwaysRun = true, invocationCount = 3, groups = {"smoke"})
+    @Epic("Авторизация")
+    @Feature("Страница логина")
+    @Story("Позитивный логин")
     public void checkLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -21,7 +25,7 @@ public class LoginTest extends BaseTest {
                 {"standard_user", "", "Epic sadface: Password is required"},
                 {"", "secret_sauce", "Epic sadface: Username is required"},
                 {"incorrect", "secret_sauce",
-                        "Epic sadface: Username and password do not match any user in this service"},
+                        "Epic sadface: Username and password do not match any user in this servic"},
                 {"standard_user", "incorrect",
                         "Epic sadface: Username and password do not match any user in this service"}
         };
@@ -29,6 +33,12 @@ public class LoginTest extends BaseTest {
 
     @Test(testName = "Проверка логина с некорректными значениями", dataProvider = "Негативные тесты для логина",
             priority = 2, groups = "regression")
+    @Epic("Авторизация")
+    @Feature("Страница логина")
+    @Story("Негативный логин")
+    @Link(name = "Документация", url = "https://www.saucedemo.com")
+    @TmsLink("TMS_T10")
+    @Issue("TMS_T11")
     public void checkLoginWithInvalidValue(String user, String password, String errorMessage) {
         loginPage.open();
         loginPage.login(user, password);
