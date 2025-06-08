@@ -38,8 +38,9 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("Добавление товара в корзину")
-    public void addToCart(String productName) {
+    public ProductsPage addToCart(String productName) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON, productName))).click();
+        return this;
     }
 
     public List getAllProductNames() {
@@ -58,9 +59,10 @@ public class ProductsPage extends BasePage {
         return prices;
     }
     @Step("Сортировка {typeOfSort}")
-    public void sort(String typeOfSort) {
+    public ProductsPage sort(String typeOfSort) {
         Select select = new Select(driver.findElement(PRODUCT_SORT));
         select.selectByVisibleText(typeOfSort);
+        return this;
     }
 
     public boolean isSort(String typeOfSort) {

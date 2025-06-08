@@ -19,10 +19,10 @@ public class CartTest extends BaseTest {
     @TmsLink("TMS_T10")
     @Issue("TMS_T11")
     public void checkAddToCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
         String productName = "Sauce Labs Backpack";
-        productsPage.addToCart(productName);
+        loginPage.open()
+                .login("standard_user", "secret_sauce")
+                .addToCart(productName);
         String name = productsPage.getProductName(productName);
         String price = productsPage.getProductPrice(productName);
         mainPage.goToCart();
@@ -37,8 +37,8 @@ public class CartTest extends BaseTest {
     @Feature("Добавления двух товаров в корзину")
     @Story("Отображение товаров в корзине")
     public void checkAddTwoProductsToCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .login("standard_user", "secret_sauce");
         String[] productNames = new String[]{"Sauce Labs Fleece Jacket", "Sauce Labs Bike Light"};
         String[] names = new String[productNames.length];
         String[] prices = new String[productNames.length];
@@ -60,8 +60,8 @@ public class CartTest extends BaseTest {
     @Feature("Добавления 6 товаров в корзину")
     @Story("Отображение товаров в корзину")
     public void checkAddSixProductsToCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .login("standard_user", "secret_sauce");
         String[] productNames = new String[]{
                 "Sauce Labs Backpack", "Sauce Labs Fleece Jacket", "Sauce Labs Bike Light",
                 "Sauce Labs Bolt T-Shirt", "Sauce Labs Onesie", "Test.allTheThings() T-Shirt (Red)"};

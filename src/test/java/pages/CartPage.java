@@ -21,15 +21,17 @@ public class CartPage extends BasePage {
     }
 
     @Step("Перейти к странице оформлению заказа")
-    public void checkout() {
+    public CheckoutPage checkout() {
         driver.findElement(CHECKOUT_BUTTON).click();
+        return new CheckoutPage(driver);
     }
 
     public String getProductPrice(String productName) {
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
-    public void removeProduct(String productName) {
+    public CartPage removeProduct(String productName) {
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, productName))).click();
+        return this;
     }
 }

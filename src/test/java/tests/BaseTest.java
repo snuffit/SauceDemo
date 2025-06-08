@@ -2,7 +2,6 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
@@ -10,12 +9,12 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pages.*;
+import utils.TestListener;
 
-import java.io.File;
 import java.time.Duration;
 import java.util.HashMap;
 
-import static tests.AllureUtils.takeScreenshot;
+import static utils.AllureUtils.takeScreenshot;
 
 @Listeners(TestListener.class)
 public class BaseTest {

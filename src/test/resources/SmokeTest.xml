@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SauceDemo Smoke Test" thread-count="3" parallel="tests">
     <listeners>
-        <listener class-name="tests.TestListener"/>
-        <listener class-name="tests.AnnotationTransformer"/>
+        <listener class-name="utils.TestListener"/>
+        <listener class-name="utils.AnnotationTransformer"/>
     </listeners>
     <test name="Thread 1">
         <groups>

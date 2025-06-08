@@ -13,7 +13,8 @@ public class MainPage extends BasePage {
     private static final By CART_BUTTON = By.xpath("//*[@data-test='shopping-cart-link']");
 
     @Step("Открыть корзину")
-    public void goToCart() {
+    public CartPage goToCart() {
         driver.findElement(CART_BUTTON).click();
+        return new CartPage(driver);
     }
 }

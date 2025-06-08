@@ -1,5 +1,6 @@
 package pages;
 
+import dto.Checkout;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -51,16 +52,18 @@ public class CheckoutPage extends BasePage {
     }
 
     @Step("Заполнить поля значениями {firstName}, {lastName}, {postalCode} и перейти на следующий этап заказа")
-    public void fillFields(String firstName, String lastName, String postalCode) {
-        driver.findElement(FIRST_NAME_FIELD).sendKeys(firstName);
-        driver.findElement(LAST_NAME_FIELD).sendKeys(lastName);
-        driver.findElement(POSTAL_CODE_FIELD).sendKeys(postalCode);
+    public CheckoutPage fillFields(Checkout checkout) {
+        driver.findElement(FIRST_NAME_FIELD).sendKeys(checkout.getFirstName());
+        driver.findElement(LAST_NAME_FIELD).sendKeys(checkout.getLastName());
+        driver.findElement(POSTAL_CODE_FIELD).sendKeys(checkout.getPostalCode());
         driver.findElement(CONTINUE_BUTTON).click();
+        return this;
     }
 
     @Step("Завершение оформления заказа")
-    public void finish() {
+    public CheckoutPage finish() {
         driver.findElement(FINISH_BUTTON).click();
+        return this;
     }
 
     public double getCorrectTax() {

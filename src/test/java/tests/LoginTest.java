@@ -14,8 +14,8 @@ public class LoginTest extends BaseTest {
     @Feature("Страница логина")
     @Story("Позитивный логин")
     public void checkLogin() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .login("standard_user", "secret_sauce");
         assertEquals(productsPage.getTitle(), "Products", "Вход не выполнен");
     }
 
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
                 {"standard_user", "", "Epic sadface: Password is required"},
                 {"", "secret_sauce", "Epic sadface: Username is required"},
                 {"incorrect", "secret_sauce",
-                        "Epic sadface: Username and password do not match any user in this servic"},
+                        "Epic sadface: Username and password do not match any user in this service"},
                 {"standard_user", "incorrect",
                         "Epic sadface: Username and password do not match any user in this service"}
         };
@@ -40,8 +40,8 @@ public class LoginTest extends BaseTest {
     @TmsLink("TMS_T10")
     @Issue("TMS_T11")
     public void checkLoginWithInvalidValue(String user, String password, String errorMessage) {
-        loginPage.open();
-        loginPage.login(user, password);
+        loginPage.open()
+                .login(user, password);
         assertEquals(loginPage.getErrorMessage(), errorMessage, "Ошибки не обнаружено");
     }
 

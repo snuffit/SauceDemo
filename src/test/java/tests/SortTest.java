@@ -25,9 +25,9 @@ public class SortTest extends BaseTest {
     @Feature("Страница логина")
     @Story("Позитивный логин")
     public void checkSort(String user, String password, String typeOfSort) {
-        loginPage.open();
-        loginPage.login(user, password);
-        productsPage.sort(typeOfSort);
+        loginPage.open()
+                .login(user, password)
+                .sort(typeOfSort);
         assertTrue(productsPage.isSort(typeOfSort), "Сортировка не работает");
     }
 }
