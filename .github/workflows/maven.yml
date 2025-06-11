@@ -20,4 +20,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run tests
-      run: mvn -B package --file pom.xml
+      run: mvn clean test
+    - name: Run cross browsers tests
+      run: mvn clean test -DsuiteXmlFile='src/test/resources/CrossBrowserTest.xml'
