@@ -2,10 +2,12 @@ package pages;
 
 import dto.Checkout;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+@Log4j2
 public class CheckoutPage extends BasePage {
 
     public CheckoutPage(WebDriver driver) {
@@ -28,6 +30,7 @@ public class CheckoutPage extends BasePage {
                     "//div[@data-test='inventory-item-price']";
 
     public double getSumOfProductPrices() {
+        log.info("Get sum of product prices");
         double sum = 0;
         for (WebElement el : driver.findElements(UNIVERSAL_PRODUCT_PRICE)) {
             sum += Double.parseDouble(el.getText()
@@ -51,8 +54,9 @@ public class CheckoutPage extends BasePage {
                 .replaceAll("Total: \\$", ""));
     }
 
-    @Step("Заполнить поля значениями {firstName}, {lastName}, {postalCode} и перейти на следующий этап заказа")
+    @Step("Заполнить поля значениями и перейти на следующий этап заказа")
     public CheckoutPage fillFields(Checkout checkout) {
+        log.info("Fill fields by {}", checkout);
         driver.findElement(FIRST_NAME_FIELD).sendKeys(checkout.getFirstName());
         driver.findElement(LAST_NAME_FIELD).sendKeys(checkout.getLastName());
         driver.findElement(POSTAL_CODE_FIELD).sendKeys(checkout.getPostalCode());
@@ -62,6 +66,7 @@ public class CheckoutPage extends BasePage {
 
     @Step("Завершение оформления заказа")
     public CheckoutPage finish() {
+        log.info("Finish checkout");
         driver.findElement(FINISH_BUTTON).click();
         return this;
     }

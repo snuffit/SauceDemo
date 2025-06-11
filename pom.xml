@@ -16,9 +16,12 @@
         <suiteXmlFile>src/test/resources/RegressionTest.xml</suiteXmlFile>
         <allure.version>2.24.0</allure.version>
         <aspectj.version>1.9.20.1</aspectj.version>
+        <lombok.version>1.18.38</lombok.version>
         <faker.version>1.0.2</faker.version>
         <surfire.version>3.1.2</surfire.version>
         <allureMaven.version>2.12.0</allureMaven.version>
+        <log4j.version>2.24.3</log4j.version>
+        <jackson.version>2.12.3</jackson.version>
     </properties>
 
     <dependencyManagement>
@@ -62,6 +65,24 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 
