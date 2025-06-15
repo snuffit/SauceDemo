@@ -11,6 +11,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      USER: ${{secrets.SD_USER}}
+      PASS: ${{secrets.SD_PASSWORD}}
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -26,6 +30,6 @@ jobs:
         browser: firefox
         version: latest
     - name: Run tests
-      run: mvn clean test
+      run: mvn clean test -Duser=$USER -Dpassword=$PASS
     - name: Run cross browsers tests
-      run: mvn clean test -DsuiteXmlFile='src/test/resources/CrossBrowserTest.xml'
+      run: mvn clean test -Duser=$USER -Dpassword=$PASS -DsuiteXmlFile='src/test/resources/CrossBrowserTest.xml'

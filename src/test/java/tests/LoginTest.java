@@ -15,18 +15,18 @@ public class LoginTest extends BaseTest {
     @Story("Позитивный логин")
     public void checkLogin() {
         loginPage.open()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
         assertEquals(productsPage.getTitle(), "Products", "Вход не выполнен");
     }
 
     @DataProvider(name = "Негативные тесты для логина")
     public Object[][] loginData() {
         return new Object[][]{
-                {"standard_user", "", "Epic sadface: Password is required"},
-                {"", "secret_sauce", "Epic sadface: Username is required"},
-                {"incorrect", "secret_sauce",
+                {user, "", "Epic sadface: Password is required"},
+                {"", password, "Epic sadface: Username is required"},
+                {"incorrect", password,
                         "Epic sadface: Username and password do not match any user in this service"},
-                {"standard_user", "incorrect",
+                {user, "incorrect",
                         "Epic sadface: Username and password do not match any user in this service"}
         };
     }
