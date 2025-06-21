@@ -35,7 +35,7 @@ pipeline {
                                         <p>Проверить сборку: <a href="${BUILD_URL}">${BUILD_URL}</a></p>
                                         <p>Длительность: ${BUILD_DURATION}</p>
                                         <p>Изменения: ${CHANGES}</p>''',
-                                to: 'team@example.com',
+                                to: 'sadpufikot@gmail.com',
                                 attachLog: true,
                                 compressLog: true
                             )
