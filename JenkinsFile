@@ -29,6 +29,16 @@ pipeline {
                 always {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+                    emailext(
+                                subject: '${PROJECT_NAME} - Build #${BUILD_NUMBER} - ${BUILD_STATUS}',
+                                body: '''<p>${PROJECT_NAME} - Build #${BUILD_NUMBER} - ${BUILD_STATUS}</p>
+                                        <p>Проверить сборку: <a href="${BUILD_URL}">${BUILD_URL}</a></p>
+                                        <p>Длительность: ${BUILD_DURATION}</p>
+                                        <p>Изменения: ${CHANGES}</p>''',
+                                to: 'team@example.com',
+                                attachLog: true,
+                                compressLog: true
+                            )
                 }
             }
         }
